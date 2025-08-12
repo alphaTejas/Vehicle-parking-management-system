@@ -74,6 +74,6 @@ MAD1 project/
 
 - Make sure to activate the virtual environment before running the app.
 - All required Python packages are listed in `requirements.txt`.
-- For any issues, please raise an issue in the repository.
+
 
 ---
