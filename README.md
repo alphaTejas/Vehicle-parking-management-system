@@ -25,7 +25,7 @@ MAD1 project/
 
 1. **Clone the repository**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/alphaTejas/Vehicle-parking-system-management.git
    cd "MAD1 project"
    ```
 
