@@ -62,12 +62,11 @@ MAD1 project/
 
 ## 🛠️ Technologies Used
 
-- **Python 3**
-- **Flask** (or Django, if used)
-- **SQLite** (or other DB, if used)
-- **HTML, CSS, JavaScript** (Frontend)
-- **Jinja2** (for templating, if Flask)
-- **Other libraries:** See `requirements.txt`
+- **Flask: Python web framework for backend logic.**
+- **SQLAlchemy: ORM for managing database relationships and queries.**
+- **Bootstrap: Frontend framework for styling and responsive design.**
+- **SQLite: Database for data persistence.**
+- **Jinja2: Templating engine for rendering HTML with dynamic data.**
 
 ---
 
