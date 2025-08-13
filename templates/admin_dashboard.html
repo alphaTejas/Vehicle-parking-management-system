@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/dashboard.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold">ParkingApp Admin</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link {% if active_tab == 'home' %}active{% endif %}"
+                            href="{{ url_for('admin_dashboard') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active_tab == 'users' %}active{% endif %}"
+                            href="{{ url_for('admin_users') }}">Users</a></li>
+                    <li class="nav-item"><a class="nav-link {% if active_tab == 'search' %}active{% endif %}"
+                            href="{{ url_for('admin_search') }}">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Summary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+                <div class="d-flex">
+                    <a href="{{ url_for('edit_admin_profile') }}" class="btn btn-outline-info ms-2">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add Lot Button -->
+    <div class="conatiner">
+        <div class="d-flex justify-content-end mb-4 my-5">
+            <a href="{{ url_for('add_lot') }}" class="btn btn-success add-lot-btn">+ Add Lot</a>
+        </div>
+    </div>
+    {% if parking_lots|length == 0 %}
+    <div class="alert alert-info text-center my-5">
+        <h5 class="mb-3">🚫 No parking lot history found.</h5>
+    </div>
+    {% else %}
+    <div class="row">
+        {% for lot in parking_lots %}
+        <div class="col-md-4 mx-auto">
+            <div class="card mb-4 shadow">
+                <div class="card-body">
+                    <div class="container">
+                    <h5 class="card-title">{{ lot.name }}</h5>
+                    <a href="{{ url_for('edit_lot', lot_id=lot.id) }}" class="btn btn-primary btn-sm mb-2">Edit Lot</a>
+                    <p>{{ lot.description }}</p>
+                    
+                    <form action="{{ url_for('delete_lot', lot_id=lot.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" {% if lot.occupied_spots> 0 %}disabled{% endif %}>
+                            Delete Lot
+                        </button>
+                    </form>
+                    </div>
+                    <p class="text-success">
+                        Occupied: {{
+                        lot.spots | selectattr('status', 'equalto', 'O') | list | length
+                        }} / {{ lot.spots|length }}
+                    </p>
+                    <!-- ...existing code... -->
+                    <div class="d-flex flex-wrap">
+                        {% for spot in lot.spots %}
+                        <!-- Button shows status (A/O), not spot_number -->
+                        <button type="button"
+                            class="btn {% if spot.status == 'A' %}btn-success{% else %}btn-danger{% endif %} m-1"
+                            data-bs-toggle="modal" data-bs-target="#spotModal{{ spot.id }}">
+                            {{ spot.status }}
+                        </button>
+
+                        <!-- Modal for spot details -->
+                        <div class="modal fade" id="spotModal{{ spot.id }}" tabindex="-1"
+                            aria-labelledby="spotModalLabel{{ spot.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="spotModalLabel{{ spot.id }}">
+                                            {% if spot.status == 'A' %}
+                                            View/Delete Parking Spot
+                                            {% else %}
+                                            Occupied Parking Spot Details
+                                            {% endif %}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>ID: {{ spot.id }}</p>
+                                        <p>Status: {{ spot.status }}</p>
+                                        {% if spot.status == 'O' %}
+                                        {% set booking = spot.bookings|selectattr('leaving_timestamp', 'equalto',
+                                        None)|list|first %}
+                                        {% if booking %}
+                                        <p>Customer ID: {{ booking.user_id }}</p>
+                                        <p>Vehicle number: {{ booking.vehicle_number }}</p>
+                                        <p>Date/time of parking: {{ booking.parking_timestamp }}</p>
+                                        <p>Est. parking cost: {{ booking.parking_cost_per_unit }}</p>
+                                        {% endif %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="modal-footer">
+                                        {% if spot.status == 'A' %}
+                                        <form method="POST" action="{{ url_for('delete_spot', spot_id=spot.id) }}">
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this spot?');">Delete</button>
+                                        </form>
+                                        {% endif %}
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- ...existing code... -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

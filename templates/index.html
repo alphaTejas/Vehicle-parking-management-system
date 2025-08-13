@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parking App Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- Container with flexbox to align content to the right -->
+                <div class="d-flex justify-content-end align-items-start p-3">
+                    <form method="POST" action="/">
+                        <input type="hidden" name="user_type" value="user">
+                        <button type="submit" class="btn btn-primary btn-lg">Login as User</button>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-end align-items-start p-3">
+                    <form method="POST" action="/">
+                        <input type="hidden" name="user_type" value="admin">
+                        <button type="submit" class="btn btn-success btn-lg">Login as Admin</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <!-- Carousel -->
+    <main>
+        <div id="carouselExampleIndicators" class="carousel slide" style="max-width: 700px; margin: 2rem auto;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='images/pic1.jpg') }}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/pic2.jpg') }}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='images/pic3.jpg') }}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Info Cards -->
+    <div class="container d-flex flex-wrap justify-content-center mt-5 mb-5 gap-5">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ url_for('static', filename='images/pic4.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Find and reserve parking spots instantly with our top-rated vehicle parking
+                    app. Enjoy real-time availability, cashless payments, and secure parking options—all in one
+                    place. Simplify your commute today!</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="{{ url_for('static', filename='images/pic5.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Experience cutting-edge parking technology with our app—featuring smart spot
+                    detection, seamless integrations, and lightning-fast performance. We bring innovation to your
+                    everyday convenience.</p>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <img src="{{ url_for('static', filename='images/pic6.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">Secure your parking with us NOW.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="pt-5 my-5 text-muted border-top text-center">
+        &copy; 2025 My Website
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

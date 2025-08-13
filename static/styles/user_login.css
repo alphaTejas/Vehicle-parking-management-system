@@ -1,0 +1,82 @@
+body {
+    background: #e9ecef;
+}
+
+.login-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+    padding: 2.5rem 2rem;
+    max-width: 370px;
+    margin: auto;
+}
+
+.brand-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.system-desc {
+    text-align: center;
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #343a40;
+}
+
+.btn-login {
+    width: 100%;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.register-link {
+    text-align: center;
+    display: block;
+    margin-top: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.alert {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.parking-image {
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0 1rem 1rem 0;
+}
+
+@media (max-width: 767px) {
+    .parking-image {
+        display: none;
+    }
+
+    .login-card {
+        border-radius: 1rem;
+    }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Parking Lot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Edit Parking Lot</h2>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Prime Location Name:</label>
+            <input type="text" name="prime_location_name" class="form-control" value="{{ lot.prime_location_name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Pin code:</label>
+            <input type="text" name="pin_code" class="form-control" value="{{ lot.pin_code }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Price (per hour):</label>
+            <input type="number" name="price" class="form-control" value="{{ lot.price }}" required>
+        </div>
+        <div class="mb-3">
+            <label>Maximum spots:</label>
+            <input type="number" name="maximum_number_of_spots" class="form-control" value="{{ lot.maximum_number_of_spots }}" required>
+        </div>
+        <!-- Add other fields as needed -->
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Admin Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container my-5">
+        <h3 class="mb-4">Edit Profile</h3>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="ad_full_name" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="ad_full_name" name="ad_full_name"
+                    value="{{ admin.ad_full_name }}">
+            </div>
+            <div class="mb-3">
+                <label for="ad_email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="ad_email" name="ad_email" value="{{ admin.ad_email }}">
+            </div>
+            <div class="mb-3">
+                <label for="ad_password" class="form-label">New Password (optional)</label>
+                <input type="password" class="form-control" id="ad_password" name="ad_password">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>

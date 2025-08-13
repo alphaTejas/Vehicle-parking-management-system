@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Release the parking spot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5" style="max-width: 500px;">
+        <div class="card shadow p-4">
+            <h4 class="mb-4 text-center">Release the parking spot</h4>
+            <form method="POST">
+                <div class="mb-3">
+                    <label>Spot ID:</label>
+                    <input type="text" class="form-control" value="{{ booking.spot_id }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label>Vehicle Number:</label>
+                    <input type="text" class="form-control" value="{{ booking.vehicle_number }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label>Parking time:</label>
+                    <input type="text" class="form-control"
+                        value="{{ booking.parking_timestamp.strftime('%Y-%m-%d %H:%M:%S') }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label>Releasing time:</label>
+                    <input type="text" class="form-control"
+                        value="{{ datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S') }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label>Total cost:</label>
+                    <input type="text" class="form-control"
+                        value="{% if booking.leaving_timestamp %}{{ booking.total_cost }}{% else %}{{ estimated_cost }}{% endif %}"
+                        readonly>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Release</button>
+                    <a href="{{ url_for('user_dashboard') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

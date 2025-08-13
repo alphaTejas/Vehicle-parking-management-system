@@ -1,0 +1,46 @@
+.parking-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 32px);
+    gap: 6px;
+    justify-content: center;
+}
+
+.spot-box {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 2px solid #2ecc40;
+    background: #e9ffe9;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+/*  Font fixes for better readability */
+body,
+.card,
+.card-body,
+.card-title,
+.card-text {
+    font-family: 'Segoe UI', 'Roboto', 'Arial', 'Helvetica Neue', sans-serif !important;
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: normal;
+    text-align: left;
+    white-space: normal;
+}
+
+.card-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #193a6b;
+    margin-bottom: 0.5rem;
+}
+
+.add-lot-btn {
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1em;
+}

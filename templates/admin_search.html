@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar (reuse from dashboard, update links as above) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">ParkingApp Admin</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_dashboard') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_users') }}">Users</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ url_for('admin_search') }}">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Summary</a></li>
+                </ul>
+                <div class="d-flex">
+                    <a href="{{ url_for('logout') }}" class="btn btn-outline-light">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <form method="POST" action="{{ url_for('admin_search') }}">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <label for="searchType" class="form-label fw-bold">Search by</label>
+                    <select class="form-select" id="searchType" name="searchType" required>
+                        <option value="user_id" {% if searchType == 'user_id' %}selected{% endif %}>User ID</option>
+                        <option value="location" {% if searchType == 'location' %}selected{% endif %}>Location</option>
+                        <option value="spot_id" {% if searchType == 'spot_id' %}selected{% endif %}>Spot ID</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" name="searchValue" placeholder="search string" value="{{ searchValue or '' }}" required>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-warning fw-bold">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if lots %}
+    <div class="container my-4">
+        <h5 class="mb-3 text-primary">Search Results</h5>
+        <div class="row">
+            {% for lot in lots %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ lot.name }}</h5>
+                        <a href="{{ url_for('edit_lot', lot_id=lot.id) }}" class="btn btn-link text-primary">Edit</a> |
+                        <form action="{{ url_for('delete_lot', lot_id=lot.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-link text-danger" {% if lot.spots | selectattr('status', 'equalto', 'O') | list | length > 0 %}disabled{% endif %}>Delete</button>
+                        </form>
+                        <p class="mt-2 text-success">
+                            (Occupied: {{ lot.spots | selectattr('status', 'equalto', 'O') | list | length }} / {{ lot.spots|length }})
+                        </p>
+                        <div class="d-flex flex-wrap">
+                            {% for spot in lot.spots %}
+                            <span class="spot-box btn {% if spot.status == 'A' %}btn-success{% else %}btn-danger{% endif %} m-1">
+                                {{ spot.status }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

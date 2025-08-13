@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Parking Lot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">ParkingApp Admin</a>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="mb-4">Parking Lot Details</h2>
+        <div class="card">
+            <div class="card-body">
+                <p><strong>Name:</strong> {{ lot.name }}</p>
+                <p><strong>Address:</strong> {{ lot.address }}</p>
+                <p><strong>Pin code:</strong> {{ lot.pincode }}</p>
+                <p><strong>Price:</strong> ₹{{ lot.price }}</p>
+                <p><strong>Max Spots:</strong> {{ lot.max_spots }}</p>
+                <p><strong>Occupied:</strong> {{ lot.occupied }}</p>
+            </div>
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary mt-3">Back to Dashboard</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

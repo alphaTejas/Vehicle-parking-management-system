@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Parking Lot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/add_lot.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">ParkingApp Admin</a>
+        </div>
+    </nav>
+    <div class="form-container">
+        <h2 class="form-title mb-4 text-center">New Parking Lot</h2>
+        <form method="POST" autocomplete="off">
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="adname" class="form-control" placeholder="Enter lot name" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Pin code</label>
+                <input type="text" name="pincode" class="form-control" placeholder="Enter pin code" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Price (₹/hr)</label>
+                <input type="number" name="price" class="form-control" placeholder="Enter price" min="0" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Max Spots</label>
+                <input type="number" name="max_spots" class="form-control" placeholder="Enter max spots" min="1" required>
+            </div>
+             <div class="mb-3">
+                <label class="form-label">location name</label>
+                <input type="text" name="prime_location_name" class="form-control" placeholder="location"  required>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success px-4">Add</button>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary px-4">Cancel</a>
+
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
