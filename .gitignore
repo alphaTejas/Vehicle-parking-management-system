@@ -1,0 +1,10 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.env/
+venv/
+
+# SQLite database (optional: keep if you don’t want to track DB file)
+*.sqlite3
