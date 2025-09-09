@@ -7,16 +7,27 @@ A multi-user application for managing 4-wheeler parking across different parking
 ## 📁 Project Structure
 
 ```
-MAD1 project/
+vehicle-parking-system/
 │
 ├── app.py
 ├── requirements.txt
 ├── README.md
+│
 ├── /static
 │   └── ... (static files: CSS, JS, images)
+│
 ├── /templates
 │   └── ... (HTML templates)
+│
+├── /application
+│   ├── __init__.py
+│   ├── models.py
+│   ├── config.py
+│   ├── controllers.py
+│   └── database.py
+│
 └── ... (other modules/files)
+
 ```
 
 ---
