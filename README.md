@@ -40,34 +40,15 @@ vehicle-parking-system/
    cd "MAD1 project"
    ```
 
-2. **Create a virtual environment**
+2. **Installing the requirements**
    ```bash
-   python3 -m venv .venv
+   sh local_setup.sh
    ```
 
-3. **Activate the virtual environment**
-   - **Mac/Linux:**
-     ```bash
-     source .venv/bin/activate
-     ```
-   - **Windows (Command Prompt):**
-     ```bash
-     .venv\Scripts\activate
-     ```
-   - **Windows (PowerShell):**
-     ```bash
-     .\.venv\Scripts\Activate.ps1
-     ```
-
-4. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Run the application**
-   ```bash
-   python app.py
-   ```
+3. **Run the App**
+```bash
+sh local_run.sh
+```
 
 ---
 
