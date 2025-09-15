@@ -46,9 +46,9 @@ vehicle-parking-system/
    ```
 
 3. **Run the App**
-```bash
-sh local_run.sh
-```
+   ```bash
+   sh local_run.sh
+   ```
 
 ---
 
